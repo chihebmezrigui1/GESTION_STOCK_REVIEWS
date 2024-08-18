@@ -1,0 +1,20 @@
+/* Custom styles for the Menu component */
+.custom-menu {
+    height: 100%;
+  }
+  
+  /* Custom styles for the selected item */
+  .custom-selected-item.ant-menu-item-selected {
+    background-color: #d5c480;
+    color: white; 
+  }
+custom-table
+  .custom-menu {
+    height: 100%;
+  }
+  
+  /* Custom styles for the selected item */
+  .custom-selected-item.ant-menu-item-selected {
+    background-color: #d5c480; /* Adjust the color and opacity level as needed */
+    color: white;
+  }
