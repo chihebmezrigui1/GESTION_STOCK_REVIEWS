@@ -11,9 +11,16 @@ const Product = require('./models/Product');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-app.use(cors());
+app.use(cors({
+  origin: '*', // Allow all origins, adjust for production as needed
+}));
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'build')));
 
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 mongoose.connect('mongodb+srv://chihabmezrigui:chiheb123@cluster0.bcgruo1.mongodb.net/ipssi_db?retryWrites=true&w=majority&appName=Cluster0', {
   useNewUrlParser: true,
@@ -103,11 +110,9 @@ app.delete('/products/:id', async (req, res) => {
 const upload = multer({ dest: 'uploads/' });
 
 app.use(express.json());
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // Ensure this matches your frontend URL
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-});
+app.use(cors({
+  origin: '*', // Allow all origins, adjust for production as needed
+}));
 
 
 
@@ -128,6 +133,7 @@ const analyzeSentiment = async (text) => {
 };
 
 const { Parser } = require('json2csv');
+
 
 app.post('/upload-csv', upload.single('file'), async (req, res) => {
   const filePath = req.file.path;
