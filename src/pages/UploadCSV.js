@@ -22,7 +22,7 @@ const UploadCSV = () => {
     formData.append('file', file);
     setLoading(true)
     try {
-      const response = await axios.post('https://gestion-stock-reviews-bys1.vercel.app//upload-csv', formData, {
+      const response = await axios.post('http://localhost:5000/upload-csv', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

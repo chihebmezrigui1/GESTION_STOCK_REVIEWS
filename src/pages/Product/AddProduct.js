@@ -9,7 +9,7 @@ const AddProduct = () => {
 
     const handleSave = async (values) => {
         try {
-            const response = await fetch('https://gestion-stock-reviews-bys1.vercel.app//add_product', {
+            const response = await fetch('http://localhost:5000/add_product', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
