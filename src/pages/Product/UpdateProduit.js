@@ -18,7 +18,7 @@ const UpdateProduct = () => {
     const handleSave = async (values) => {
         try {
             const updatedProduct = { ...values, id };
-            const response = await fetch(`http://localhost:5000/products/${initialValues.id}`, {
+            const response = await fetch(`https://gestion-stock-reviews-bys1.vercel.app//products/${initialValues.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

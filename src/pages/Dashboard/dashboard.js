@@ -28,7 +28,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/products');
+        const response = await axios.get('https://gestion-stock-reviews-bys1.vercel.app//products');
         setProducts(response.data);
         console.log("products",response.data);
       } catch (error) {
@@ -80,7 +80,7 @@ const Dashboard = () => {
 
     const handleDeleteProduct = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/products/${id}`);
+            await axios.delete(`https://gestion-stock-reviews-bys1.vercel.app//products/${id}`);
             setProducts(products.filter(product => product.id !== id));
             setModalVisible(false);
         } catch (error) {
@@ -208,7 +208,7 @@ const Dashboard = () => {
       useEffect(() => {
         const fetchProducts = async () => {
           try {
-            const response = await axios.get('http://localhost:5000/products');
+            const response = await axios.get('https://gestion-stock-reviews-bys1.vercel.app//products');
             const products = response.data;
     
             const productTypes = {
