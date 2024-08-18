@@ -4,6 +4,11 @@ import React from 'react';
 import { red } from '../../constants/colors';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
+const baseURL = process.env.NODE_ENV === 'production' 
+  ? 'http://10.188.231.218:5000'  // Production API base URL
+  : 'http://localhost:5000';  // Local development base URL
+
+
 const UpdateProduct = () => {
 
 
@@ -18,7 +23,7 @@ const UpdateProduct = () => {
     const handleSave = async (values) => {
         try {
             const updatedProduct = { ...values, id };
-            const response = await fetch(`http://localhost:5000/products/${initialValues.id}`, {
+            const response = await fetch(`${baseURL}/products/${initialValues.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

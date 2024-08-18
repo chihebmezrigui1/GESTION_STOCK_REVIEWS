@@ -3,6 +3,12 @@ import axios from 'axios';
 import { Chart } from 'react-google-charts';
 import { Card, Progress, Spin } from 'antd';
 
+
+const baseURL = process.env.NODE_ENV === 'production' 
+  ? 'http://10.188.231.218:5000'  // Production API base URL
+  : 'http://localhost:5000';  // Local development base URL
+
+
 const UploadCSV = () => {
   const [file, setFile] = useState(null);
   const [results, setResults] = useState([]);
@@ -22,7 +28,7 @@ const UploadCSV = () => {
     formData.append('file', file);
     setLoading(true)
     try {
-      const response = await axios.post('http://localhost:5000/upload-csv', formData, {
+      const response = await axios.post(`${baseURL}/upload-csv`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

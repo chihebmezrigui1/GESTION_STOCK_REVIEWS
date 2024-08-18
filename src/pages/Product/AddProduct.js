@@ -4,12 +4,17 @@ import React from 'react';
 import { red } from '../../constants/colors';
 import { useNavigate } from 'react-router-dom';
 
+
+const baseURL = process.env.NODE_ENV === 'production' 
+  ? 'http://10.188.231.218:5000'  // Production API base URL
+  : 'http://localhost:5000';  // Local development base URL
+
 const AddProduct = () => {
     const navigate = useNavigate();
 
     const handleSave = async (values) => {
         try {
-            const response = await fetch('http://localhost:5000/add_product', {
+            const response = await fetch(`${baseURL}/add_product`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
