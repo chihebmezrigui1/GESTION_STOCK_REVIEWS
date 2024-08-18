@@ -110,10 +110,10 @@ app.delete('/products/:id', async (req, res) => {
 const upload = multer({ dest: 'uploads/' });
 
 app.use(express.json());
-app.use(cors({
-  origin: '*', // Allow all origins, adjust for production as needed
-}));
-
+const corsOptions = {
+  origin: 'http://10.188.231.218:3000'  // Update this to match your frontend URL
+};
+app.use(cors(corsOptions));
 
 
 
