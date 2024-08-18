@@ -29,7 +29,7 @@ const Dashboard = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get('http://localhost:5000/products');
-        setProducts(response.data);
+        setProducts(Array.isArray(response.data) ? response.data : []);
         console.log("products",response.data);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -251,9 +251,10 @@ const Dashboard = () => {
       };
     
 
-    const totalSmartphones = products.filter(product => product.product_type === 'Smartphone').length;
-    const totalTVs = products.filter(product => product.product_type === 'TV').length;
-    const totalConsole = products.filter(product => product.product_type === 'Console').length;
+      const totalSmartphones = Array.isArray(products) ? products.filter(product => product.product_type === 'Smartphone').length : 0;
+      const totalTVs = Array.isArray(products) ? products.filter(product => product.product_type === 'TV').length : 0;
+      const totalConsole = Array.isArray(products) ? products.filter(product => product.product_type === 'Console').length : 0;
+      
 
     return (
         <div>
