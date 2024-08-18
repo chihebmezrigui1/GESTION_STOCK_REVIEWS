@@ -11,15 +11,19 @@ const Product = require('./models/Product');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-app.use(cors({
-  origin: '*', // Allow all origins, adjust for production as needed
-}));
+
+app.use(express.json());
+const corsOptions = {
+  origin: 'http://10.188.231.218:3000',  
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true
+};
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'build')));
 
-
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'build', 'index.js'));
 });
 
 mongoose.connect('mongodb+srv://chihabmezrigui:chiheb123@cluster0.bcgruo1.mongodb.net/ipssi_db?retryWrites=true&w=majority&appName=Cluster0', {
@@ -108,15 +112,6 @@ app.delete('/products/:id', async (req, res) => {
 
 
 const upload = multer({ dest: 'uploads/' });
-
-app.use(express.json());
-const corsOptions = {
-  origin: 'http://10.188.231.218:3000'  // Update this to match your frontend URL
-};
-app.use(cors(corsOptions));
-
-
-
 
 const analyzeSentiment = async (text) => {
     const apiKey = 'I/7VSoqdZ6JRZm2peujA/w==ntb8mokFoAuFBy3n'; // Replace with your API key
